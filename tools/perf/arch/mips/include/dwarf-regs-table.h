@@ -1,5 +1,6 @@
 /*
- * dwarf-regs.c : Mapping of DWARF debug register numbers into register names.
+ * dwarf-regs-table.h : Mapping of DWARF debug register numbers into
+ * register names.
  *
  * Copyright (C) 2013 Cavium, Inc.
  *
@@ -14,23 +15,17 @@
  * GNU General Public License for more details.
  *
  */
-#include <stdio.h>
-#include <dwarf-regs.h>
 
-static const char *mips_gpr_names[32] = {
+#ifdef DEFINE_DWARF_REGSTR_TABLE
+#undef REG_DWARFNUM_NAME
+#define REG_DWARFNUM_NAME(reg, idx)	([idx] = "$" #reg)
+static const char *mips_regstr_tbl[] = {
 	"$0", "$1", "$2", "$3", "$4", "$5", "$6", "$7", "$8", "$9",
 	"$10", "$11", "$12", "$13", "$14", "$15", "$16", "$17", "$18", "$19",
 	"$20", "$21", "$22", "$23", "$24", "$25", "$26", "$27", "$28", "$29",
-	"$30", "$31"
-};
+	"$30", "$31",
+	REG_DWARFNUM_NAME(hi,   64),
+	REG_DWARFNUM_NAME(lo,   65),
 
-const char *get_arch_regstr(unsigned int n)
-{
-	if (n < 32)
-		return mips_gpr_names[n];
-	if (n == 64)
-		return "hi";
-	if (n == 65)
-		return "lo";
-	return NULL;
-}
+};
+#endif

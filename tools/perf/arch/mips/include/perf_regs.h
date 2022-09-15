@@ -2,9 +2,9 @@
 #define ARCH_PERF_REGS_H
 
 #include <stdlib.h>
-#include "../../util/types.h"
 #include <asm/perf_regs.h>
 
+#define PERF_REGS_MAX PERF_REG_MIPS_MAX
 #define PERF_REG_IP PERF_REG_MIPS_PC
 #define PERF_REG_SP PERF_REG_MIPS_R29
 

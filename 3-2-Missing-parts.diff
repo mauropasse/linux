@@ -1,0 +1,29 @@
+diff --git a/tools/perf/Makefile b/tools/perf/Makefile
+index 55b42b2..b1aaca2 100644
+--- a/tools/perf/Makefile
++++ b/tools/perf/Makefile
+@@ -505,6 +505,9 @@ ifeq ($(NO_PERF_REGS),0)
+   ifeq ($(ARCH),x86)
+     LIB_H += arch/x86/include/perf_regs.h
+   endif
++  ifeq ($(ARCH),mips)
++    LIB_H += arch/mips/include/perf_regs.h
++  endif
+ endif
+
+ ifndef NO_LIBNUMA
+diff --git a/tools/perf/arch/mips/util/unwind-libunwind.c b/tools/perf/arch/mips/util/unwind-libunwind.c
+index 7af25427943f..0d8c99c29da6 100644
+--- a/tools/perf/arch/mips/util/unwind-libunwind.c
++++ b/tools/perf/arch/mips/util/unwind-libunwind.c
+@@ -4,8 +4,9 @@
+ #include <libunwind.h>
+ #include "perf_regs.h"
+ #include "../../util/unwind.h"
++#include "util/debug.h"
+
+-int unwind__arch_reg_id(int regnum)
++int libunwind__arch_reg_id(int regnum)
+ {
+ 	switch (regnum) {
+ 	case UNW_MIPS_R1 ... UNW_MIPS_R25:

@@ -1,0 +1,2 @@
+perf-$(CONFIG_DWARF)        += dwarf-regs.o
+perf-$(CONFIG_LIBUNWIND)    += unwind-libunwind.o
