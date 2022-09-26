@@ -27,3 +27,18 @@ index 7af25427943f..0d8c99c29da6 100644
  {
  	switch (regnum) {
  	case UNW_MIPS_R1 ... UNW_MIPS_R25:
+diff --git a/arch/mips/pnx833x/Platform b/arch/mips/pnx833x/Platform
+# This is not for our platform, but should be similar:
+index 6b1a847d593f..287260669551 100644
+--- a/arch/mips/pnx833x/Platform
++++ b/arch/mips/pnx833x/Platform
+@@ -1,5 +1,5 @@
+ # NXP STB225
+ platform-$(CONFIG_SOC_PNX833X) += pnx833x/
+-cflags-$(CONFIG_SOC_PNX833X)   += -I
+$(srctree)/arch/mips/include/asm/mach-pnx833x
++cflags-$(CONFIG_SOC_PNX833X)   +=
+-I$(srctree)/arch/mips/include/asm/mach-pnx833x
+ load-$(CONFIG_NXP_STB220)      += 0xffffffff80001000
+ load-$(CONFIG_NXP_STB225)      += 0xffffffff80001000
+--
